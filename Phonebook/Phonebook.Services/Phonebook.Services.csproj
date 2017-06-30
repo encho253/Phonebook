@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F20274E-29EB-47DC-B00A-4F946BD00A85}</ProjectGuid>
+    <ProjectGuid>{2DD9A43B-83D2-458A-88BC-A087D1C31859}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Phonebook.Data</RootNamespace>
-    <AssemblyName>Phonebook.Data</AssemblyName>
+    <RootNamespace>Phonebook.Services</RootNamespace>
+    <AssemblyName>Phonebook.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,10 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CitizensService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\Phonebook.Contracts\Phonebook.Contracts.csproj">
+      <Project>{a2da7954-cc1d-424b-9072-05249fd9b704}</Project>
+      <Name>Phonebook.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phonebook.DataBase\Phonebook.Database.csproj">
+      <Project>{00e1441d-c6a7-4cad-8b68-cd7d4c1d85da}</Project>
+      <Name>Phonebook.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phonebook.Models\Phonebook.Models.csproj">
+      <Project>{846A0D7C-EFEF-4BAA-BB8E-B66CF9D4B00A}</Project>
+      <Name>Phonebook.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

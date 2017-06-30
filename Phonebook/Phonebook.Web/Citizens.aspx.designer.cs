@@ -10,7 +10,7 @@
 namespace Phonebook {
     
     
-    public partial class About {
+    public partial class Citizens {
         
         /// <summary>
         /// Test control.

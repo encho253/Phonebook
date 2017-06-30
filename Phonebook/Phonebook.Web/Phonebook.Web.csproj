@@ -126,7 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="Citizens.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -178,12 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="Citizens.aspx.cs">
+      <DependentUpon>Citizens.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
+    <Compile Include="Citizens.aspx.designer.cs">
+      <DependentUpon>Citizens.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -240,9 +240,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Phonebook.Contracts\Phonebook.Contracts.csproj">
+      <Project>{a2da7954-cc1d-424b-9072-05249fd9b704}</Project>
+      <Name>Phonebook.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Phonebook.Models\Phonebook.Models.csproj">
       <Project>{846a0d7c-efef-4baa-bb8e-b66cf9d4b00a}</Project>
       <Name>Phonebook.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phonebook.Services\Phonebook.Services.csproj">
+      <Project>{2DD9A43B-83D2-458A-88BC-A087D1C31859}</Project>
+      <Name>Phonebook.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
