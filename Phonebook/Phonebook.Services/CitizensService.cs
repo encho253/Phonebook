@@ -8,6 +8,9 @@ namespace Phonebook.Services
 {
     public class CitizensService : ICitizensService
     {
+        private const string Get_All_Citizens = "usp_SelectAllCitizens";
+        private const string Get_All_Citizens_OrderBy = "usp_SelectCitizensOrderBy";
+
         private DatabaseProvider database;
 
         public CitizensService()
@@ -28,10 +31,10 @@ namespace Phonebook.Services
             }
         }
 
-        public ICollection<Citizen> GetAllCitizens()
+        private IEnumerable<Citizen> GetCitizens(string command)
         {
             var citizens = new List<Citizen>();
-            var result = database.ReadCommand("usp_SelectAllCitizens");
+            var result = database.ReadCommand(command);
 
             while (result.Read())
             {
@@ -48,6 +51,20 @@ namespace Phonebook.Services
             }
 
             return citizens;
+        }
+
+        public IEnumerable<Citizen> GetCitizens()
+        {
+            IEnumerable<Citizen> sortedCitizens = GetCitizens(Get_All_Citizens);
+
+            return sortedCitizens;
+        }
+
+        public IEnumerable<Citizen> GetCitizensOrderBy()
+        {
+            IEnumerable<Citizen> sortedCitizens = GetCitizens(Get_All_Citizens_OrderBy);
+
+            return sortedCitizens;
         }
     }
 }

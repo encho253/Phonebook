@@ -5,12 +5,12 @@
     Inherits="Phonebook.Citizens" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ListView ID="Test" runat="server" ItemType="Phonebook.Models.Citizen">
+    <asp:ListView ID="CitizensCollection" runat="server" ItemType="Phonebook.Models.Citizen" SelectMethod="CitizensCollection_GetData">
         <LayoutTemplate>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>First Name</th>
+                        <th><a href="?id=FirstName">First Name</a></th>
                         <th>Last Name</th>
                         <th>Phone Number</th>
                         <th>City</th>
@@ -42,5 +42,4 @@
             </tr>
         </ItemTemplate>
     </asp:ListView>
-
 </asp:Content>
