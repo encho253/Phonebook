@@ -1,5 +1,6 @@
-﻿using Phonebook.Models;
-using Phonebook.Services;
+﻿using Ninject;
+using Phonebook.Contracts.Models;
+using Phonebook.Contracts.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,15 +10,16 @@ using System.Web.UI;
 namespace Phonebook
 {
     public partial class Citizens : Page
-    {
-        private CitizensService citizensService;
-        private IEnumerable<Citizen> citizens;
+    {     
+        private IEnumerable<ICitizen> citizens;
 
         public Citizens()
         {
-            this.citizensService = new CitizensService();
-            this.citizens = new List<Citizen>();
+            this.citizens = new List<ICitizen>();
         }
+
+        [Inject]
+        public ICitizensService CitizensService { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +28,7 @@ namespace Phonebook
         }
 
 
-        public IEnumerable<Citizen> CitizensCollection_GetData()
+        public IEnumerable<ICitizen> CitizensCollection_GetData()
         {          
             HttpCookie cookie = Request.Cookies["OrderBy"];
 
@@ -43,17 +45,17 @@ namespace Phonebook
             {
                 cookie.Value = builder.Append(queryParameter).Append("Descending").ToString();
 
-                this.citizens = citizensService.GetCitizensOrderByDesc(queryParameter);
+                this.citizens = this.CitizensService.GetCitizensOrderByDesc(queryParameter);
             }
             else if(queryParameter == null)
             {
-                this.citizens = citizensService.GetCitizens();
+                this.citizens = this.CitizensService.GetCitizens();
             }
             else
             {
                 cookie.Value = queryParameter;
 
-                this.citizens = citizensService.GetCitizensOrderBy(queryParameter);
+                this.citizens = this.CitizensService.GetCitizensOrderBy(queryParameter);
             }
 
             Response.Cookies.Add(cookie);

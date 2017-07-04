@@ -43,5 +43,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseProvider.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Phonebook.Contracts\Phonebook.Contracts.csproj">
+      <Project>{a2da7954-cc1d-424b-9072-05249fd9b704}</Project>
+      <Name>Phonebook.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,10 @@
-﻿using System.Data;
+﻿using Phonebook.Contracts.Database;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Phonebook.Data
 {
-    public class DatabaseProvider
+    public class DatabaseProvider : IDatabaseProvider
     {
         private const string ConnectionString = "Data Source=.;Initial Catalog=Phonebook;Integrated Security=True";
 
@@ -22,7 +23,7 @@ namespace Phonebook.Data
             {
                 return this.connection;
             }
-            private set
+            set
             {
                 this.connection = value;
             }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\IDatabaseProvider.cs" />
     <Compile Include="Models\IAddress.cs" />
     <Compile Include="Models\ICitizen.cs" />
     <Compile Include="Models\ICity.cs" />
@@ -47,8 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICitizensService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

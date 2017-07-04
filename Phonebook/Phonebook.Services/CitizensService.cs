@@ -1,4 +1,6 @@
-﻿using Phonebook.Contracts.Services;
+﻿using Phonebook.Contracts.Database;
+using Phonebook.Contracts.Models;
+using Phonebook.Contracts.Services;
 using Phonebook.Data;
 using Phonebook.Models;
 using System;
@@ -8,27 +10,15 @@ namespace Phonebook.Services
 {
     public class CitizensService : ICitizensService
     {
-        private DatabaseProvider database;
+        private IDatabaseProvider database;
 
-        public CitizensService()
+        public CitizensService(IDatabaseProvider database)
         {
-            this.Database = new DatabaseProvider();
-
+            this.database = database;
         }
 
-        public DatabaseProvider Database
-        {
-            get
-            {
-                return this.database;
-            }
-            set
-            {
-                this.database = value;
-            }
-        }
 
-        private IEnumerable<Citizen> GetCitizens(string command, string commandParameter = null)
+        private IEnumerable<ICitizen> GetCitizens(string command, string commandParameter = null)
         {
             var citizens = new List<Citizen>();
             var result = database.ReadCommand(command, commandParameter);
@@ -50,29 +40,29 @@ namespace Phonebook.Services
             return citizens;
         }
 
-        public IEnumerable<Citizen> GetCitizens()
+        public IEnumerable<ICitizen> GetCitizens()
         {
             string Get_All_Citizens = "usp_SelectAllCitizens";
 
-            IEnumerable<Citizen> sortedCitizens = GetCitizens(Get_All_Citizens);
+            IEnumerable<ICitizen> sortedCitizens = GetCitizens(Get_All_Citizens);
 
             return sortedCitizens;
         }
 
-        public IEnumerable<Citizen> GetCitizensOrderBy(string value)
+        public IEnumerable<ICitizen> GetCitizensOrderBy(string value)
         {
             string Get_Citizens_OrderBy = "usp_SelectCitizensOrderBy";
 
-            IEnumerable<Citizen> sortedCitizens = GetCitizens(Get_Citizens_OrderBy, value);
+            IEnumerable<ICitizen> sortedCitizens = GetCitizens(Get_Citizens_OrderBy, value);
 
             return sortedCitizens;
         }
 
-        public IEnumerable<Citizen> GetCitizensOrderByDesc(string value)
+        public IEnumerable<ICitizen> GetCitizensOrderByDesc(string value)
         {
             string Get_Citizens_OrderByDesc = "usp_SelectCitizensOrderByDesc";
 
-            IEnumerable<Citizen> sortedCitizens = GetCitizens(Get_Citizens_OrderByDesc, value);
+            IEnumerable<ICitizen> sortedCitizens = GetCitizens(Get_Citizens_OrderByDesc, value);
 
             return sortedCitizens;
         }
