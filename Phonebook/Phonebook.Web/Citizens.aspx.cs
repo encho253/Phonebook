@@ -10,11 +10,13 @@ namespace Phonebook
 {
     public partial class Citizens : Page
     {
-        private CitizensService citizensService;   
+        private CitizensService citizensService;
+        private IEnumerable<Citizen> citizens;
 
         public Citizens()
         {
             this.citizensService = new CitizensService();
+            this.citizens = new List<Citizen>();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -37,30 +39,26 @@ namespace Phonebook
             string queryParameter = Request.QueryString["id"];
             StringBuilder builder = new StringBuilder();
 
-            if (cookie.Value == queryParameter)
+            if ((cookie.Value == queryParameter) && (queryParameter != null))
             {
                 cookie.Value = builder.Append(queryParameter).Append("Descending").ToString();
+
+                this.citizens = citizensService.GetCitizensOrderByDesc(queryParameter);
+            }
+            else if(queryParameter == null)
+            {
+                this.citizens = citizensService.GetCitizens();
             }
             else
             {
                 cookie.Value = queryParameter;
+
+                this.citizens = citizensService.GetCitizensOrderBy(queryParameter);
             }
 
             Response.Cookies.Add(cookie);
 
-            switch (cookie.Value)
-            {
-                case "FirstName":
-                    return citizensService.GetCitizensOrderBy();
-                case "FirstNameDescending":
-                    return citizensService.GetCitizens();
-                case "LastName":
-                    return citizensService.GetCitizens();
-                case "LastNameDescending":
-                    return citizensService.GetCitizens();
-                default:
-                    return citizensService.GetCitizens();
-            }      
+            return citizens;
         }
     }
 }

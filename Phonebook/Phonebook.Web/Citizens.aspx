@@ -7,15 +7,15 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ListView ID="CitizensCollection" runat="server" ItemType="Phonebook.Models.Citizen" SelectMethod="CitizensCollection_GetData">
         <LayoutTemplate>
-            <table class="table table-hover">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th><a href="?id=FirstName">First Name</a></th>
-                        <th>Last Name</th>
-                        <th>Phone Number</th>
-                        <th>City</th>
-                        <th>Street</th>
-                        <th>Street Number</th>
+                        <th><a href="?id=LastName">Last Name</a></th>
+                        <th><a href="#">Phone Number</a></th>
+                        <th><a href="?id=City">City</a></th>
+                        <th><a href="?id=Street">Street</a></th>
+                        <th><a href="#">Street Number</a></th>
                     </tr>
                 </thead>
                 <tbody>

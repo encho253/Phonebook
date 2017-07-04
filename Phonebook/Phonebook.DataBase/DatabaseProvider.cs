@@ -40,18 +40,24 @@ namespace Phonebook.Data
             }
         }
 
-        public SqlDataReader ReadCommand(string commandString)
-        {           
+        public SqlDataReader ReadCommand(string commandString, string commandParameter = null)
+        {
             this.Connection.ConnectionString = ConnectionString;
 
             this.Command.CommandText = commandString;
             this.Command.CommandType = CommandType.StoredProcedure;
+
+            if (commandParameter != null)
+            {
+                this.Command.Parameters.Add("@table", SqlDbType.VarChar).Value = commandParameter;
+            }
+
             this.Command.Connection = this.Connection;
 
-            this.Connection.Open();          
+            this.Connection.Open();
 
             SqlDataReader reader = this.Command.ExecuteReader();
-          
+
             return reader;
         }
     }
