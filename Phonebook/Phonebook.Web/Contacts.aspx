@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Citizens" Language="C#"
+﻿<%@ Page Title="Contacts" Language="C#"
     MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
-    CodeBehind="Citizens.aspx.cs"
+    CodeBehind="Contacts.aspx.cs"
     Inherits="Phonebook.Citizens" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">

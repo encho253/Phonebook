@@ -1,7 +1,6 @@
 ﻿using Phonebook.Contracts.Database;
 using Phonebook.Contracts.Models;
 using Phonebook.Contracts.Services;
-using Phonebook.Data;
 using Phonebook.Models;
 using System;
 using System.Collections.Generic;
